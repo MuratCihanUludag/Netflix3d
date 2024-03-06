@@ -1,14 +1,14 @@
 import React from 'react'
 import Home from "../../Pages/Home"
 import { Routes,Route } from 'react-router-dom'
-function Container() {
+function ContainerRoute() {
   return (
-    <div>
+    <section>
         <Routes>
             <Route path='/' element={<Home/>} />
         </Routes>
-    </div>
+    </section>
   )
 }
 
-export default Container
+export default ContainerRoute

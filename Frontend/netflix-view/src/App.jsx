@@ -1,14 +1,14 @@
 import Navbar from './Components/SeedWorks/Navbar'
 import Footer from './Components/SeedWorks/Footer'
-import Container from './Components/SeedWorks/Container'
-import './App.css'
+import ContainerRoute from './Components/SeedWorks/ContainerRoute'
+import "./assets/css/App.css"
 function App() {
 
   return (
     <div>
-        <Navbar/> { /*=== Header ===*/}
-        <Container/>
-        <Footer/> { /*=== Footer ===*/}
+        <Navbar/>         { /*=== Header ===*/}
+        <ContainerRoute/> { /*=== Routes ===*/}
+        <Footer/>         { /*=== Footer ===*/}
     </div>
   )
 }
