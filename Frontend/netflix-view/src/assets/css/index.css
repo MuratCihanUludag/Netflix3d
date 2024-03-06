@@ -1,3 +1,15 @@
-:root{
-  
-}
+:root {
+    --body: #0e1525;
+    --blue: #0053a6;
+    --blue-strongest: #b2d9ff;
+    --blue-hover:#0a77e4;
+  }
+  .btn-blue {
+    background-color: var(--blue) !important;
+    box-shadow: 0 0 24px var(--blue) !important;
+    outline-color: var(--accent-primary-strongest) !important;
+    transition: all 0.3s !important;
+  }
+  .btn-blue:hover {
+    background-color: var(--blue-hover) !important;
+  }
