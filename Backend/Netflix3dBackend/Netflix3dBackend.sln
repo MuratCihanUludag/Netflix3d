@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netflix.DAL", "Netflix.DAL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netflix.Entity", "Netflix.Entity\Netflix.Entity.csproj", "{879F4236-5775-4C35-B917-353524B08947}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netflix.PL", "Netflix.PL\Netflix.PL.csproj", "{B26A1311-6194-42D5-B443-7F2FD254332D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netflix.BLL", "Netflix.BLL\Netflix.BLL.csproj", "{8FCF67A3-6C77-4221-9A28-74A22C99ED4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{879F4236-5775-4C35-B917-353524B08947}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{879F4236-5775-4C35-B917-353524B08947}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{879F4236-5775-4C35-B917-353524B08947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26A1311-6194-42D5-B443-7F2FD254332D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26A1311-6194-42D5-B443-7F2FD254332D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26A1311-6194-42D5-B443-7F2FD254332D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26A1311-6194-42D5-B443-7F2FD254332D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FCF67A3-6C77-4221-9A28-74A22C99ED4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FCF67A3-6C77-4221-9A28-74A22C99ED4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FCF67A3-6C77-4221-9A28-74A22C99ED4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FCF67A3-6C77-4221-9A28-74A22C99ED4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
