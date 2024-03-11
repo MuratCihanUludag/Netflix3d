@@ -43,7 +43,7 @@ const CreatePoint = ({ position, size, color }) => {
         }
   
         setSpeed(newSpeed);
-        setScale(window.scrollY * 0.0018 + 1);
+        setScale(window.scrollY * 0.0012 + 1);
         setOpacity(window.scrollY * -0.0015 + 1);
       };
       window.addEventListener("scroll", handleWhell);
