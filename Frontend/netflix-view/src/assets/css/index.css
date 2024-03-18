@@ -5,7 +5,7 @@
   --blue-strongest: #b2d9ff;
   --blue-hover: #0a77e4;
   --body-text-color: #ffffff;
-  --hr-color: #8b8b8b;
+  --hr-color: #c7c5c5;
 }
 hr {
   border-top: 7px solid var(--hr-color);

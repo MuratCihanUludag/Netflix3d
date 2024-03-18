@@ -1,16 +1,62 @@
-@media screen and (max-width: 1280px) {
-}
-
-@media screen and (max-width: 990px) {
-    .netflix-text{
-        display: none;
-    }
-    .mobil-card-film-name{
-        width: auto !important;
+@media screen and (max-width: 1024px) {
+    .home-title h1 {
+        font-size: 42px !important;
+        margin-bottom: 1rem;
+      }
+      .home-title p {
+        font-size: 18px !important;
+      }
+      .netflix-text{
+        font-size: 38px !important;
       }
 }
-@media screen and (max-width: 1280px) {
+
+@media screen and (max-width: 992px) {
+    .navbar-nav{
+        height: 100vh !important;
+     }
+  .netflix-text {
+    display: none;
+  }
+  .mobil-card-film-name {
+    width: auto !important;
+  }
+
+  .text-description h1{
+    font-size: 26px;
+  }
+  .text-description p{
+    font-size: 16px ;
+  }
+  .home-title p {
+    font-size: 16px !important;
+  }
+  .home-title h1 {
+    font-size: 38px !important;
+    margin-bottom: 1rem;
+  }
+ 
+}
+@media screen and (max-width: 768px) {
+
+      .text-description h1{
+        font-size: 24px;
+      }
+      .text-description p{
+        font-size: 14px ;
+      }
 }
 @media screen and (max-width: 500px) {
+  .home-title {
+    width: 75% !important;
+  }
+  .home-title h1 {
+    font-size: 28px !important;
+  }
+  .home-title p {
+    font-size: 16px !important;
+    width: 100% !important;
+  }
 
+  
 }
