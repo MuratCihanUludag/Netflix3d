@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-
+import { useTranslation } from "react-i18next";
 
 
 
@@ -8,7 +8,6 @@ const CreatePoint = ({ position, size, color }) => {
     let deltaZ = window.scrollY * 0.04 < 3 ? 3 : window.scrollY * 0.04;
     const ref = useRef();
     const opacityRef = useRef(0);
-  
    
     const [speed, setSpeed] = useState(deltaZ);
     const [scale, setScale] = useState(1);
@@ -20,7 +19,7 @@ const CreatePoint = ({ position, size, color }) => {
     homeTitle.style.transform = ` translate(-50%, -50%) scale(${scale})`;
     homeTitle.style.opacity = `${opacity}`;
     homeTitle.style.opacity = opacity.toString();
-    console.log(speed)
+
     if (parseFloat(homeTitle.style.opacity) < 0) {
       homeTitle.style.display = "none";
     } else {
@@ -102,6 +101,7 @@ const CreatePoint = ({ position, size, color }) => {
   };
 
 function Points() {
+  const {t,i18n} = useTranslation();
     const WindowScroll = (num) =>{
         window.scrollTo({
             top:num,
@@ -115,6 +115,7 @@ function Points() {
         setTimeout(()=>{
             WindowScroll(targerOffset);
         },800)
+        
     }
   return (
     <div className='points' style={{height:"100vh"}}>
@@ -123,13 +124,10 @@ function Points() {
             {CreatePoints()}
         </Canvas>
         <div className={`home-title text-center`}>
-            <h1 className="mb-5">Sınırsız film, dizi ve çok daha fazlası</h1>
-            <p className="w-75 mx-auto">
-            119,99 TL ile başlayan fiyatlarla. İstediğiniz zaman iptal edin. <br />
-            İzlemeye hazır mısınız? Üye olmak ya da hesabınıza tekrar ulaşmak için tek yapmanız gereken e-posta adresinizi girmek.
-            </p>
+            <h1 >{t("Point_h_text")}</h1>
+              <p className="w-75 mx-auto" dangerouslySetInnerHTML={{ __html: t('Point_p_text', { returnObjects: true }) }} />
             <button onClick={ButtonClick} className={`btn btn-blue show`}>
-              Start Creating
+              {t("Point_button_text")}
             </button>
       </div>
     </div>
