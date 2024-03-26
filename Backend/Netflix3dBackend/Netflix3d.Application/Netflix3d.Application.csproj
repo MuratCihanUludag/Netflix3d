@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Netflix3d.Domain\Netflix3d.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

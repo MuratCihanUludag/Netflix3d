@@ -11,4 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Netflix3d.Application\Netflix3d.Application.csproj" />
+    <ProjectReference Include="..\Netflix3d.Persistence\Netflix3d.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
