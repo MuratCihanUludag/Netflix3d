@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Netflix3d.Application\Netflix3d.Application.csproj" />
+    <ProjectReference Include="..\..\Core\Netflix3d.Application\Netflix3d.Application.csproj" />
   </ItemGroup>
 
 </Project>
