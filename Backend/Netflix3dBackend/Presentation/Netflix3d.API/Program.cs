@@ -5,13 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPersistenceService();
 
+builder.Services.AddCors();
 
 builder.Services.AddControllers();
 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 
 var app = builder.Build();
@@ -24,6 +24,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(builder =>
+{
+    builder.WithOrigins("").AllowAnyHeader();
+});
 
 app.UseAuthorization();
 
