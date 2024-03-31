@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Persistence.Repositories
 {
-    internal class WriteRepositry<T> : IWriteRepositry<T> where T : BaseEntity
+    public class WriteRepositry<T> : IWriteRepositry<T> where T : BaseEntity
     {
         private readonly NetflixDbContext _context;
         public WriteRepositry(NetflixDbContext context)
@@ -22,6 +22,7 @@ namespace Netflix3d.Persistence.Repositories
 
         public async Task<bool> AddAsync(T data)
         {
+            data.Id = Guid.NewGuid();
             data.DataStatus = DataStatus.Insert;
             data.Created = DateTime.Now;
             EntityEntry<T> entity = await Table.AddAsync(data);
@@ -33,6 +34,7 @@ namespace Netflix3d.Persistence.Repositories
         {
             foreach (var data in datas)
             {
+                data.Id = Guid.NewGuid();
                 data.DataStatus = DataStatus.Insert;
                 data.Created = DateTime.Now;
             }
