@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Persistence.Context
 {
-    public class NetflixDbContext : IdentityDbContext<NetflixUser, NetflixRole, string>
+    public class NetflixDbContext : DbContext
     {
         public NetflixDbContext(DbContextOptions<NetflixDbContext> options) : base(options)
         {
 
         }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
+
     }
 }
