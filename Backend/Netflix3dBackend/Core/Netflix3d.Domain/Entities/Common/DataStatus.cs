@@ -8,8 +8,8 @@ namespace Netflix3d.Domain.Entities.Common
 {
     public enum DataStatus
     {
-        Insert,
-        Update,
-        Delete
+        Insert=1,
+        Update=2,
+        Delete=3
     }
 }
