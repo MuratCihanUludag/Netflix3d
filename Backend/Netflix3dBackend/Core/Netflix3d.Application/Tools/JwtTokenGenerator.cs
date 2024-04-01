@@ -19,14 +19,17 @@ namespace Netflix3d.Application.Tools
         public static TokenResponseDto TokenGenerator(GetCheckAppUserQueryResult result)
         {
             var claims = new List<Claim>();
+
             if (!string.IsNullOrWhiteSpace(result.Role))
                 claims.Add(new Claim(ClaimTypes.Role, result.Role));
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, result.Id.ToString()));
+
             if (!string.IsNullOrWhiteSpace(result.Email))
                 claims.Add(new Claim(ClaimTypes.Email, result.Email));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.Token["Token:SecurityKey"]));
+
             var signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var expireDate = DateTime.Now.AddMinutes(Convert.ToInt32(Configuration.Token["Token:Expiration"]));
