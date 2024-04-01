@@ -26,7 +26,7 @@ namespace Netflix3d.API.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Kullanici adiniz veya sifreniz hatalidir.");
             }
 
         }
