@@ -20,7 +20,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(opt =>
 {
-    opt.AddDefaultPolicy(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyMethod());
+    opt.AddPolicy("Allow", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
 });
 
 var app = builder.Build();
@@ -34,7 +37,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors();
+app.UseCors("Allow");
 
 app.UseAuthentication();
 
