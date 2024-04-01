@@ -26,7 +26,7 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
         public async Task<GetCheckAppUserQueryResult> Handle(GetCheckAppUserQuery request, CancellationToken cancellationToken)
         {
             var values = new GetCheckAppUserQueryResult();
-            var user = await _appUserRepository.GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password);
+            var user = await _appUserRepository.GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password,false);
             if (user == null)
             {
                 values.IsExist = false;
@@ -35,7 +35,7 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
             {
                 values.IsExist = true;
                 values.Email = request.Email;
-                values.Role = (await _appRoleRepository.GetSingleAsync(r => r.Id == user.AppRoleId)).RoleName;
+                values.Role = (await _appRoleRepository.GetSingleAsync(r => r.Id == user.AppRoleId,false)).RoleName;
                 values.Id = user.Id;
             }
             return values;
