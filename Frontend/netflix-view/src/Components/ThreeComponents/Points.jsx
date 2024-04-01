@@ -3,7 +3,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 
 
-
 const CreatePoint = ({ position, size, color }) => {
     let deltaZ = window.scrollY * 0.04 < 3 ? 3 : window.scrollY * 0.04;
     const ref = useRef();
