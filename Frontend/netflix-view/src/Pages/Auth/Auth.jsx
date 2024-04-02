@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Starts from "../../Components/ThreeComponents/Starts";
+import Stars from "../../Components/Canvas/Starts"
 import LoginForm from "../../Components/Forms/LoginForm";
 import RegisterForm from "../../Components/Forms/RegisterForm";
 function Auth() {

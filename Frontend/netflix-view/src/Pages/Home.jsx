@@ -1,5 +1,5 @@
 import React from 'react'
-import Points from '../Components/ThreeComponents/Points'
+import Points from "../Components/Canvas/Points";
 import Img from "../assets/image/tv.png"
 import Mobil from "../assets/image/mobile-01.png"
 import Child from "../assets/image/Childrean.png"
