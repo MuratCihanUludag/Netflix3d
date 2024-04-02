@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import { useTranslation} from "react-i18next";
+import Netflix from "../Canvas/Netflix";
 
 function Navbar() {
     const {t,i18n} = useTranslation();
@@ -18,7 +19,7 @@ function Navbar() {
         <div className="navbar-blur"></div>
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid ">
-                <NavLink className="navbar-brand text-danger netflix-text" to="/"> <span className="text-danger">Netflix</span> </NavLink>
+                <NavLink className="navbar-brand text-danger netflix-text" to="/"><Netflix/></NavLink>
                 <a className=""  href="#"> </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -31,7 +32,8 @@ function Navbar() {
                                 <option value="en">English</option>
                             </select>
                         </li>
-                        <li className="nav-item"> <NavLink className=" btn btn-danger" to="/Auth" >{t("Login")}</NavLink> </li>
+                        <li className="nav-item m-1 w-lg-100"> <NavLink className=" btn btn-danger" to="/" >AnaSayfa</NavLink> </li>
+                        <li className="nav-item m-1 w-lg-100"> <NavLink className=" btn btn-danger" to="/Auth" >{t("Login")}</NavLink> </li>
                     </ul>
                 </div>
             </div>
