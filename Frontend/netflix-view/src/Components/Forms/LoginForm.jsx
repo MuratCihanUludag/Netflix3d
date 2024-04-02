@@ -12,13 +12,13 @@ function LoginForm({handleOnClick}) {
             Object.fromEntries(new FormData(formRef.current).entries())
             );
             sessionStorage.setItem("key",response.data.token)
-            console.log(response.data);
+            alert(`Bearer:"${response.data.token}`)
         } catch (error) {
             const Response ={
                 status:error.response.status,
                 message:error.response.data
             }
-            console.error(Response);
+            alert(`Status Code:${Response.status},\nMessage:${Response.message}`)
         }
     }
     console.log(sessionStorage.getItem("key"))
@@ -27,11 +27,11 @@ function LoginForm({handleOnClick}) {
        <h4 className="text-white">Oturum Ac</h4>
         <div className="form-group col-12">
             <label>Email </label>
-            <input type="email" name="email" id="6" className="form-control" />
+            <input type="email" name="email" id="6" required className="form-control" />
         </div>
         <div className="form-group col-12">
             <label>Sifre</label>
-            <input type="password" name="password" id="7" className="form-control" />
+            <input type="password" name="password" required id="7" className="form-control" />
         </div>
         <div className="form-group col-12">
             <button  type='submit' className=" w-100 btn btn-danger">Giris Yap</button>
@@ -40,7 +40,7 @@ function LoginForm({handleOnClick}) {
             <h5 className='text-center'>VEYA</h5>
         </div>
         <div className="form-group col-12">
-            <button onClick={()=>{handleOnClick(false)}} type='button'  className='btn btn-warning w-100 mb-3' >Uye Ol</button>
+            <button onClick={()=>{handleOnClick(false)}} type='button'  className='btn btn-info w-100 mb-3' >Uye Ol</button>
         </div>
     </form>
   )
