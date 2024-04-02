@@ -1,0 +1,11 @@
+Model Information:
+* title:	Netflix logo
+* source:	https://sketchfab.com/3d-models/netflix-logo-982a5030b7e44af4b85f608c69067c1b
+* author:	nicmitham (https://sketchfab.com/nicmitham)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Netflix logo" (https://sketchfab.com/3d-models/netflix-logo-982a5030b7e44af4b85f608c69067c1b) by nicmitham (https://sketchfab.com/nicmitham) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
