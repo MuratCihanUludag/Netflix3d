@@ -7,11 +7,11 @@ namespace Netflix3d.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegistersController : ControllerBase
+    public class RegisterController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public RegistersController(IMediator mediator)
+        public RegisterController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -19,7 +19,7 @@ namespace Netflix3d.API.Controllers
         public async Task<IActionResult> CreateUser(CreateAppUserCommand command)
         {
             await _mediator.Send(command);
-            return Ok();
+            return Ok("Basarili");
         }
     }
 }
