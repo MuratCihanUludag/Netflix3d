@@ -32,7 +32,7 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
                 Email = request.Email,
                 Password = request.Password,
                 AppRoleId = userRole.Id
-            }); ;
+            });
         }
     }
 }
