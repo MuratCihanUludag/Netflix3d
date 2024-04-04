@@ -3,7 +3,7 @@
 
 namespace Netflix3d.Application.Repositories
 {
-    public interface IAppUserWriteRepository : IWriteRepositry<AppUser>
+    public interface IAppUserWriteRepository : IWriteRepository<AppUser>
     {
     }
 }

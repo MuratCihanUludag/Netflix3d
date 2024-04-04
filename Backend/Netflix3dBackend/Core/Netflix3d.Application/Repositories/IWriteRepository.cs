@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Application.Repositories
 {
-    public interface IWriteRepositry<T> : IRepository<T> where T : BaseEntity
+    public interface IWriteRepository<T> : IRepository<T> where T : BaseEntity
     {
         Task<bool> AddAsync(T data);
         Task<bool> AddRangeAsync(List<T> datas);

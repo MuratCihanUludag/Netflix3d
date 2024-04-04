@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Application.Repositories
 {
-    public interface IAppRoleWriteRepository : IWriteRepositry<AppRole>
+    public interface IAppRoleWriteRepository : IWriteRepository<AppRole>
     {
     }
 }
