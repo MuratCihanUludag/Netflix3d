@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Persistence.Repositories.AppUserRepository
 {
-    public class AppUserWriteRepository : WriteRepositry<AppUser>, IAppUserWriteRepository
+    public class AppUserWriteRepository : WriteRepository<AppUser>, IAppUserWriteRepository
     {
         public AppUserWriteRepository(NetflixDbContext context) : base(context)
         {

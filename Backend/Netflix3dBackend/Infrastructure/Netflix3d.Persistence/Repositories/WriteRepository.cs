@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Persistence.Repositories
 {
-    public class WriteRepositry<T> : IWriteRepositry<T> where T : BaseEntity
+    public class WriteRepository<T> : IWriteRepository<T> where T : BaseEntity
     {
         private readonly NetflixDbContext _context;
-        public WriteRepositry(NetflixDbContext context)
+        public WriteRepository(NetflixDbContext context)
         {
             _context = context;
         }
