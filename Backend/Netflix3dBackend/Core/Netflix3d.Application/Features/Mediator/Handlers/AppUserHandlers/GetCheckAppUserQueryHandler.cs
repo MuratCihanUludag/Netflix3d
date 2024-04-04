@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Netflix3d.Application.Abstractions;
+using Netflix3d.Application.Abstractions.AutoMapper;
 using Netflix3d.Application.Features.Mediator.Queries.AppUserQueries;
 using Netflix3d.Application.Features.Mediator.Results.AppUserResults;
 using Netflix3d.Application.Repositories;
@@ -14,33 +16,32 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
 {
     public class GetCheckAppUserQueryHandler : IRequestHandler<GetCheckAppUserQuery, GetCheckAppUserQueryResult>
     {
-        private readonly IReadRepository<AppUser> _appUserRepository;
-        private readonly IReadRepository<AppRole> _appRoleRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public GetCheckAppUserQueryHandler(IReadRepository<AppUser> appUserRepository, IReadRepository<AppRole> appRoleRepository)
+
+        public GetCheckAppUserQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _appUserRepository = appUserRepository;
-            _appRoleRepository = appRoleRepository;
+
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<GetCheckAppUserQueryResult> Handle(GetCheckAppUserQuery request, CancellationToken cancellationToken)
         {
-            var values = new GetCheckAppUserQueryResult();
 
-            var user = await _appUserRepository.GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password, false);
+            var user = await _unitOfWork.GetReadRepository<AppUser>().GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password);
 
             if (user == null)
-            {
-                values.IsExist = false;   
-            }
+                //throw new Exception("Kullanici bulunamadi");
+                throw new Exception("Kullanici bulunamadi");
             else
             {
-                values.IsExist = true;
-                values.Email = request.Email;
-                values.Role = (await _appRoleRepository.GetSingleAsync(r => r.Id == user.AppRoleId, false)).RoleName;
-                values.Id = user.Id;
+                GetCheckAppUserQueryResult userResponse = new GetCheckAppUserQueryResult();
+                userResponse = _mapper.Map<GetCheckAppUserQueryResult, AppUser>(user);
+                userResponse.Role = (await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(r => r.Id == user.AppRoleId, false)).RoleName;
+                return userResponse;
             }
-            return values;
         }
     }
 }

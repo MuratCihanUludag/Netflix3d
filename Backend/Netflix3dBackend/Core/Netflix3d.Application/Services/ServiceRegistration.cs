@@ -13,7 +13,7 @@ namespace Netflix3d.Application.Services
 {
     public static class ServiceRegistration
     {
-        public static void AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(opt => opt.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
 
@@ -31,6 +31,9 @@ namespace Netflix3d.Application.Services
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            
+
         }
     }
 }
