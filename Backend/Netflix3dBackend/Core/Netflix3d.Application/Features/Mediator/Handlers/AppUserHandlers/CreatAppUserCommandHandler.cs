@@ -27,7 +27,7 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
         public async Task Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
         {
 
-            var userRole = await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(u => u.RoleName == "User");
+            var userRole = await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(u => u.RoleName == "User",false);
 
             var appUser = _mapper.Map<AppUser, CreateAppUserCommand>(request);
 

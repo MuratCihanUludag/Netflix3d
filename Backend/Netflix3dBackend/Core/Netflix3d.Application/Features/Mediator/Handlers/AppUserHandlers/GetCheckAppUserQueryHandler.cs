@@ -22,7 +22,6 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
 
         public GetCheckAppUserQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -30,14 +29,14 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
         public async Task<GetCheckAppUserQueryResult> Handle(GetCheckAppUserQuery request, CancellationToken cancellationToken)
         {
 
-            var user = await _unitOfWork.GetReadRepository<AppUser>().GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password);
+            var user = await _unitOfWork.GetReadRepository<AppUser>().GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password, false);
 
             if (user == null)
-                //throw new Exception("Kullanici bulunamadi");
+                //throw new Exception("Kullanici bulunamadi
                 throw new Exception("Kullanici bulunamadi");
             else
             {
-                GetCheckAppUserQueryResult userResponse = new GetCheckAppUserQueryResult();
+                GetCheckAppUserQueryResult userResponse = new();
                 userResponse = _mapper.Map<GetCheckAppUserQueryResult, AppUser>(user);
                 userResponse.Role = (await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(r => r.Id == user.AppRoleId, false)).RoleName;
                 return userResponse;
