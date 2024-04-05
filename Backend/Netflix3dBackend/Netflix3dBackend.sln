@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netflix3d.Domain", "Core\Ne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netflix3d.Application", "Core\Netflix3d.Application\Netflix3d.Application.csproj", "{A4E4DC59-A2D3-4880-A137-18E66088AEF6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mapper", "Mapper", "{AC95171E-E438-4D9A-B9E6-4ABDD3F2EE7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netflix3d.Mapper", "Mapper\Netflix3d.Mapper\Netflix3d.Mapper.csproj", "{61AA53BD-C6C5-40E4-9B83-8067A0C30447}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,10 @@ Global
 		{A4E4DC59-A2D3-4880-A137-18E66088AEF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4E4DC59-A2D3-4880-A137-18E66088AEF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4E4DC59-A2D3-4880-A137-18E66088AEF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61AA53BD-C6C5-40E4-9B83-8067A0C30447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61AA53BD-C6C5-40E4-9B83-8067A0C30447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61AA53BD-C6C5-40E4-9B83-8067A0C30447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61AA53BD-C6C5-40E4-9B83-8067A0C30447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{22E22326-AFA3-4498-AA9F-8B8D7EFFB19D} = {9B7514E2-E012-4BA9-B3BE-8CBD9B0C75D8}
 		{B32771F8-8653-43E4-A300-5EED3389828C} = {7504277B-CFC2-4E6E-BD96-057E04E2699F}
 		{A4E4DC59-A2D3-4880-A137-18E66088AEF6} = {7504277B-CFC2-4E6E-BD96-057E04E2699F}
+		{61AA53BD-C6C5-40E4-9B83-8067A0C30447} = {AC95171E-E438-4D9A-B9E6-4ABDD3F2EE7A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0503B4EE-6AF4-46C7-B723-0652FD6A30AC}

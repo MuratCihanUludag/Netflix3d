@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Netflix3d.Application.Features.Mediator.Commands.AppUserCommand.cs;
+using Netflix3d.Application.Features.Mediator.Commands.AppUserCommand;
 
 namespace Netflix3d.API.Controllers
 {

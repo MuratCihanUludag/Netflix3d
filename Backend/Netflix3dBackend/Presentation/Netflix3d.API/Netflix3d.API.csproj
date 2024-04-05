@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\Core\Netflix3d.Application\Netflix3d.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Netflix3d.Infrastructure\Netflix3d.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Netflix3d.Persistence\Netflix3d.Persistence.csproj" />
+    <ProjectReference Include="..\..\Mapper\Netflix3d.Mapper\Netflix3d.Mapper.csproj" />
   </ItemGroup>
 
 </Project>

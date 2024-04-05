@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
+using Netflix3d.Application.Abstractions;
 using Netflix3d.Application.Features.Mediator.Queries.AppUserQueries;
 using Netflix3d.Application.Tools;
 
@@ -20,15 +21,7 @@ namespace Netflix3d.API.Controllers
         public async Task<IActionResult> Index(GetCheckAppUserQuery query)
         {
             var values = await _mediator.Send(query);
-            if (values.IsExist)
-            {
-                return Created("", JwtTokenGenerator.TokenGenerator(values));
-            }
-            else
-            {
-                return BadRequest("Kullanici adiniz veya sifreniz hatalidir.");
-            }
-
+            return Created("", JwtTokenGenerator.TokenGenerator(values));
         }
     }
 }

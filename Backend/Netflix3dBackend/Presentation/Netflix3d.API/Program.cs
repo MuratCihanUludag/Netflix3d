@@ -1,13 +1,18 @@
 using Netflix3d.Persistence;
-using Netflix3d.Application;
+using Netflix3d.Mapper;
 using Netflix3d.Application.Services;
+using Netflix3d.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddPersistenceService();
 
-builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddApplicationServices();
+
+builder.Services.AddInfrastructureServices();
+
+builder.Services.AddMapperService();
 
 
 builder.Services.AddCors();
