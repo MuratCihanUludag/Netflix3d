@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using FluentValidation;
 namespace Netflix3d.Application.Expections
 {
     public class ExpectionMiddelware : IMiddleware
@@ -30,13 +31,23 @@ namespace Netflix3d.Application.Expections
             var statusCode = GetStatsusCode(exception);
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = statusCode;
+
+            if (exception.GetType() == typeof(ValidationException))
+            {
+                return httpContext.Response.WriteAsync(new ExceptionModel
+                {
+                    Errors = ((ValidationException)exception).Errors.Select(v => v.ErrorMessage),
+                    StatusCode = StatusCodes.Status400BadRequest
+                }.ToString());
+            }
+
+
             List<string> errors = new()
             {
-                $"Error Message : {exception.Message}",
-                $"Error Result  : {exception.InnerException?.ToString()}"
+               $"Error Message : {exception.Message}",
+               $"Error InnerExpection {exception.InnerException.ToString()}"
             };
-            var expection = new ExceptionModel { Errors = errors, StatusCode = statusCode };
-            return httpContext.Response.WriteAsJsonAsync(expection);
+            return httpContext.Response.WriteAsJsonAsync(new ExceptionModel { StatusCode = statusCode, Errors = errors }.ToString());
         }
         private static int GetStatsusCode(Exception exception) =>
             exception switch
