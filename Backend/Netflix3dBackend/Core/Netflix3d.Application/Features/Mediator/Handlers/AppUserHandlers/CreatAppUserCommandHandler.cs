@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
 {
-    public class CreatAppUserCommandHandler : IRequestHandler<CreateAppUserCommand>
+    public class CreatAppUserCommandHandler : IRequestHandler<CreateAppUserCommand, Unit>
     {
 
         private readonly IUnitOfWork _unitOfWork;
@@ -24,17 +24,17 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
             _mapper = mapper;
         }
 
-        public async Task Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
         {
 
-            var userRole = await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(u => u.RoleName == "User",false);
+            var userRole = await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(u => u.RoleName == "User", false);
 
             var appUser = _mapper.Map<AppUser, CreateAppUserCommand>(request);
 
             appUser.AppRoleId = userRole.Id;
 
             await _unitOfWork.GetWriteRepository<AppUser>().AddAsync(appUser);
-
+            return Unit.Value;
         }
     }
 }
