@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Netflix3d.Application.Abstractions;
 using Netflix3d.Application.Abstractions.AutoMapper;
+using Netflix3d.Application.Expections;
 using Netflix3d.Application.Features.Mediator.Queries.AppUserQueries;
 using Netflix3d.Application.Features.Mediator.Results.AppUserResults;
 using Netflix3d.Application.Repositories;
@@ -33,7 +35,7 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
 
             if (user == null)
                 //throw new Exception("Kullanici bulunamadi
-                throw new Exception("Kullanici bulunamadi");
+                throw new NotFoundException("Kullanici Bulunamadi");
             else
             {
                 GetCheckAppUserQueryResult userResponse = new();
