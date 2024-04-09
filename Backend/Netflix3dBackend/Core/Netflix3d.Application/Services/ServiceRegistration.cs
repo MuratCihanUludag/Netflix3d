@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Netflix3d.Application.Expections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Netflix3d.Application.Services
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(opt => opt.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
+            services.AddTransient<ExpectionMiddelware>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -32,7 +34,7 @@ namespace Netflix3d.Application.Services
                 };
             });
 
-            
+
 
         }
     }
