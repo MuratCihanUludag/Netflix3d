@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Netflix3d.Application.Beheviors;
 using Netflix3d.Application.Expections;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,10 @@ namespace Netflix3d.Application.Services
         {
             services.AddMediatR(opt => opt.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
             services.AddTransient<ExpectionMiddelware>();
+
+            services.AddValidatorsFromAssembly(typeof(ServiceRegistration).Assembly);
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehevior<,>));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
