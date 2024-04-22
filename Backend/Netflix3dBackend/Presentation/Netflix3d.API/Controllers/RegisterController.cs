@@ -19,7 +19,7 @@ namespace Netflix3d.API.Controllers
         public async Task<IActionResult> CreateUser(CreateAppUserCommand command)
         {
             await _mediator.Send(command);
-            return Ok("Basarili");
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }
