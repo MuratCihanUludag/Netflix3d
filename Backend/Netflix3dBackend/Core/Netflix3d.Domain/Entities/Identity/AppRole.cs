@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Domain.Entities.Identity
 {
-    public class AppRole : BaseEntity
+    public class AppRole : IdentityRole<Guid>
     {
-        public string RoleName { get; set; }    
-        public List<AppUser> Users { get; set; }
+
     }
 }

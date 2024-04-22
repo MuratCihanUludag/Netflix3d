@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Domain.Entities.Identity
 {
-    public class AppUser : BaseEntity
+    public class AppUser : IdentityUser<Guid>
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Guid AppRoleId { get; set; }
-        public AppRole AppRole { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
     }
 }
