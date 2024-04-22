@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Netflix3d.Domain.Entities.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace Netflix3d.Application.Abstractions
     {
         Task SendMailAsync(string to, string subject, string body, bool isHtml = true);
         Task SendMailAsync(string[] to, string subject, string body, bool isHtml = true);
+        Task EmailVerifier(AppUser user);
     }
 }
