@@ -9,22 +9,11 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Persistence.Context
 {
-    public class NetflixDbContext : DbContext
+    public class NetflixDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public NetflixDbContext(DbContextOptions<NetflixDbContext> options) : base(options)
         {
 
         }
-        public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<AppRole> AppRoles { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AppUser>()
-                        .HasIndex(u => u.Email).IsUnique();
-
-            base.OnModelCreating(modelBuilder);
-        }
-
     }
 }
