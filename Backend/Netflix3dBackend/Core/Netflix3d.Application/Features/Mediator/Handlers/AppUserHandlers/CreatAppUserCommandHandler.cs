@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Netflix3d.Application.Abstractions;
 using Netflix3d.Application.Abstractions.AutoMapper;
 using Netflix3d.Application.Features.Mediator.Commands.AppUserCommand;
@@ -15,25 +17,33 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
     public class CreatAppUserCommandHandler : IRequestHandler<CreateAppUserCommand, Unit>
     {
 
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
+        private readonly IMailService _mailService;
 
-        public CreatAppUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public CreatAppUserCommandHandler(UserManager<AppUser> userManager, IMapper mapper, IMailService mailService)
         {
-            _unitOfWork = unitOfWork;
+            _userManager = userManager;
             _mapper = mapper;
+            _mailService = mailService;
+
         }
 
         public async Task<Unit> Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
         {
 
-            var userRole = await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(u => u.RoleName == "User", false);
-
             var appUser = _mapper.Map<AppUser, CreateAppUserCommand>(request);
 
-            appUser.AppRoleId = userRole.Id;
+            appUser.UserName = request.Email;
 
-            await _unitOfWork.GetWriteRepository<AppUser>().AddAsync(appUser);
+            appUser.SecurityStamp = Guid.NewGuid().ToString();
+
+            await _userManager.CreateAsync(appUser, request.Password);
+
+            await _userManager.AddToRoleAsync(appUser, "User");
+
+            await _mailService.EmailVerifier(appUser);
+
             return Unit.Value;
         }
     }

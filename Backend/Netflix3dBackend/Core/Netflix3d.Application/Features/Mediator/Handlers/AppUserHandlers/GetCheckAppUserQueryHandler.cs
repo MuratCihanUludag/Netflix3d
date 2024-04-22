@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Netflix3d.Application.Abstractions;
 using Netflix3d.Application.Abstractions.AutoMapper;
@@ -18,29 +19,27 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
 {
     public class GetCheckAppUserQueryHandler : IRequestHandler<GetCheckAppUserQuery, GetCheckAppUserQueryResult>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<AppUser> _userManager; 
         private readonly IMapper _mapper;
 
 
-        public GetCheckAppUserQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetCheckAppUserQueryHandler( IMapper mapper, UserManager<AppUser> userManager)
         {
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task<GetCheckAppUserQueryResult> Handle(GetCheckAppUserQuery request, CancellationToken cancellationToken)
         {
 
-            var user = await _unitOfWork.GetReadRepository<AppUser>().GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password, false);
+            var user = await _userManager.FindByEmailAsync(request.Email);  
 
             if (user == null)
                 //throw new Exception("Kullanici bulunamadi
                 throw new NotFoundException("Kullanici Bulunamadi");
             else
             {
-                GetCheckAppUserQueryResult userResponse = new();
-                userResponse = _mapper.Map<GetCheckAppUserQueryResult, AppUser>(user);
-                userResponse.Role = (await _unitOfWork.GetReadRepository<AppRole>().GetSingleAsync(r => r.Id == user.AppRoleId, false)).RoleName;
+                var userResponse = _mapper.Map<GetCheckAppUserQueryResult, AppUser>(user);
                 return userResponse;
             }
         }
