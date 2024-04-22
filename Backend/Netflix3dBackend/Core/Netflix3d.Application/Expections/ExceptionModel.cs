@@ -9,9 +9,7 @@ namespace Netflix3d.Application.Expections
 {
     public class ExceptionModel : ErrorStatusCode
     {
-        public string? Message { get; set; }
-        public string? InnerExpection { get; set; }
-        public IEnumerable<string> Errors { get; set; } 
+        public IEnumerable<string> Errors { get; set; }
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this);

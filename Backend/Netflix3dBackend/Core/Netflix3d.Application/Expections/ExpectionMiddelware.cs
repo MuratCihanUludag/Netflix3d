@@ -1,14 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using FluentValidation;
 namespace Netflix3d.Application.Expections
 {
@@ -19,7 +9,6 @@ namespace Netflix3d.Application.Expections
             try
             {
                 await next(httpContext);
-                // httpContext.Response.ContentType = "application/json";
             }
             catch (Exception ex)
             {
@@ -44,18 +33,16 @@ namespace Netflix3d.Application.Expections
 
             List<string> errors = new()
             {
-               $"Error Message : {exception.Message}",
-               $"Error InnerExpection {exception.InnerException.ToString()}"
+               $"Error Message : {exception.Message}"
             };
-            return httpContext.Response.WriteAsJsonAsync(new ExceptionModel { StatusCode = statusCode, Errors = errors }.ToString());
+            return httpContext.Response.WriteAsJsonAsync(new ExceptionModel { StatusCode = statusCode, Errors = errors });
         }
         private static int GetStatsusCode(Exception exception) =>
             exception switch
             {
                 BadHttpRequestException => StatusCodes.Status400BadRequest,
-                DirectoryNotFoundException => StatusCodes.Status404NotFound,
-                ValidationException => StatusCodes.Status422UnprocessableEntity,
                 NotFoundException => StatusCodes.Status404NotFound,
+                ValidationException => StatusCodes.Status422UnprocessableEntity,
                 _ => StatusCodes.Status500InternalServerError
             };
     }
