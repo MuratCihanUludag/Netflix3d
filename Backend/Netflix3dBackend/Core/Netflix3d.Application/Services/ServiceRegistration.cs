@@ -19,28 +19,12 @@ namespace Netflix3d.Application.Services
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(opt => opt.RegisterServicesFromAssemblies(typeof(ServiceRegistration).Assembly));
+
             services.AddTransient<ExpectionMiddelware>();
 
             services.AddValidatorsFromAssembly(typeof(ServiceRegistration).Assembly);
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehevior<,>));
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateAudience = true,
-                    ValidateIssuer = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration.Token["Token:Issuer"],
-                    ValidAudience = Configuration.Token["Token:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.Token["Token:SecurityKey"])),
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
-
-
 
         }
     }
