@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Netflix3d.Application.Abstractions;
+using Netflix3d.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,16 @@ namespace Netflix3d.Infrastructure.Services
             smtpClient.Host = _configuration["Mail:Host"];
 
             await smtpClient.SendMailAsync(mail);
+        }
+        public async Task EmailVerifier(AppUser user)
+        {
+            StringBuilder mail = new();
+            mail.Append(@$"Merhaba <b>{user.Name} {user.Surname}</b> <br>");
+            mail.AppendLine("Hesabınızı oluşturduğunuz için teşekkür ederiz! Uygulamamızı kullanmaya başlamak için son bir adım kaldı.<br>");
+            mail.AppendLine("Hesabınızın tam olarak etkinleştirilmesi için lütfen aşağıdaki butona tıklayarak e-posta adresinizi onaylayın. Bu işlem sadece birkaç saniyenizi alacak ve uygulamamızı kullanmaya başlayabilmeniz için gereklidir.<br>");
+            mail.AppendLine("<a href='https://www.google.com'>Onayla</a>");
+
+            await SendMailAsync(user.Email, "Epost Onaylama", mail.ToString());
         }
     }
 }
