@@ -14,14 +14,14 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
 {
-    public class CreatAppUserCommandHandler : IRequestHandler<CreateAppUserCommand, Unit>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Unit>
     {
 
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IMailService _mailService;
 
-        public CreatAppUserCommandHandler(UserManager<AppUser> userManager, IMapper mapper, IMailService mailService)
+        public RegisterCommandHandler(UserManager<AppUser> userManager, IMapper mapper, IMailService mailService)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -29,10 +29,10 @@ namespace Netflix3d.Application.Features.Mediator.Handlers.AppUserHandlers
 
         }
 
-        public async Task<Unit> Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
 
-            var appUser = _mapper.Map<AppUser, CreateAppUserCommand>(request);
+            var appUser = _mapper.Map<AppUser, RegisterCommand>(request);
 
             appUser.UserName = request.Email;
 
