@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Application.Features.Mediator.Commands.AppUserCommand
 {
-    public class CreateAppUserCommandValidator : AbstractValidator<CreateAppUserCommand>
+    public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
     {
-        public CreateAppUserCommandValidator()
+        public RegisterCommandValidator()
         {
             RuleFor(user => user.Name)
                 .NotEmpty()
