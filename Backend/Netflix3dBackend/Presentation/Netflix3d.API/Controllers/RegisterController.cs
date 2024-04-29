@@ -16,7 +16,7 @@ namespace Netflix3d.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateUser(CreateAppUserCommand command)
+        public async Task<IActionResult> CreateUser(RegisterCommand command)
         {
             await _mediator.Send(command);
             return StatusCode(StatusCodes.Status201Created);

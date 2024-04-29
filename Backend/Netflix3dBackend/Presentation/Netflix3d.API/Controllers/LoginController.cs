@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Netflix3d.Application.Abstractions;
 using Netflix3d.Application.Features.Mediator.Queries.AppUserQueries;
-using Netflix3d.Application.Tools;
 
 namespace Netflix3d.API.Controllers
 {
@@ -18,10 +17,10 @@ namespace Netflix3d.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<IActionResult> Index(GetCheckAppUserQuery query)
+        public async Task<IActionResult> Index(LoginQuery query)
         {
-            var values = await _mediator.Send(query);
-            return Created("", JwtTokenGenerator.TokenGenerator(values));
+            var response = await _mediator.Send(query);
+            return StatusCode(StatusCodes.Status200OK,response);
         }
     }
 }
