@@ -32,14 +32,14 @@ namespace Netflix3d.Infrastructure.Services.Token
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email,user.Email.ToString())
+                new Claim(JwtRegisteredClaimNames.Email,user.Email.ToString()),
             };
 
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSettings.Secret));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSettings.SecurityKey));
             var token = new JwtSecurityToken(
                 issuer: _tokenSettings.Issuer,
                 audience: _tokenSettings.Audience,
@@ -69,7 +69,7 @@ namespace Netflix3d.Infrastructure.Services.Token
                 ValidateAudience = true,
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSettings.Secret)),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSettings.SecurityKey)),
             };
             JwtSecurityTokenHandler tokenHandler = new();
             var principal = tokenHandler.ValidateToken(token, tokenValidationParametres, out SecurityToken securityToken);
