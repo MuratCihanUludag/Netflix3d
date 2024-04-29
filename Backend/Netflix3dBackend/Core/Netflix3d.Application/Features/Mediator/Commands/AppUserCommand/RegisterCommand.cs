@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Netflix3d.Application.Features.Mediator.Commands.AppUserCommand
 {
-    public class CreateAppUserCommand : IRequest<Unit>
+    public class RegisterCommand : IRequest<Unit>
     {
         public string Name { get; set; }
         public string Surname { get; set; }
